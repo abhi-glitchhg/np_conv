@@ -19,7 +19,7 @@ def conv2d_nwhc(img, weight, S=(1,1), D= (1,1)):
   HO = (HI -1 -D[0]*(K[0]-1))//S[0] +1
   WO = (WI -1 -D[1]*(K[1]-1))//S[1] +1
 
-  temp = as_strided(f ,
+  temp = as_strided(img ,
            
           shape = (N, HO, WO, K[0], K[1], CI),
 
