@@ -3,7 +3,7 @@ import numpy as np
 
 
 
-def conv2d_nwhc(img, weight, S=(1,1), D= (1,1)):
+def conv2d_nhwc(img, weight, S=(1,1), D= (1,1)):
   """
   implementation of convolutions with Numpy. Hopefully optimized
 

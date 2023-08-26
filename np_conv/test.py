@@ -2,7 +2,7 @@
 #Also need to do time profiling and memory connsumption against normal convolutions
 
 import numpy as np
-from conv2d import conv2d_nwhc
+from conv2d import conv2d_nhwc
 #check against pytorch
 
 def pytorch_reference(img, weight,S =(1,1), D=(1,1)):
@@ -41,7 +41,7 @@ def basic_test():
     Z_p = torch.tensor(Z).permute(0,3,1,2)
     W_p = torch.tensor(W).permute(3,2,0,1)
 
-    print(np.linalg.norm(pytorch_reference(Z_p,W_p,S,D).permute(0,2,3,1).contiguous().numpy() - conv2d_nwhc(Z,W,S,D)))
+    print(np.linalg.norm(pytorch_reference(Z_p,W_p,S,D).permute(0,2,3,1).contiguous().numpy() - conv2d_nhwc(Z,W,S,D)))
 
 
 if __name__ == "__main__":
