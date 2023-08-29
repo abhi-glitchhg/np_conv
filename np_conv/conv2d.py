@@ -39,7 +39,7 @@ def conv2d_nhwc(img, weight, S=(1,1), D= (1,1)):
            
           shape = (N, HO, WO, K[0], K[1], CI),
 
-           strides = (Ns, Hs*S[1], Ws+(S[0]-1)*img.itemsize*CI, Hs*D[1], Ws+CI*(D[0]-1)*img.itemsize, Cs ) 
+           strides = (Ns, Hs*S[1], Ws+(S[0]-1)*img.itemsize*CI, Hs*D[0], Ws+CI*(D[1]-1)*img.itemsize, Cs ) 
 
            ).reshape(-1, K[0]*K[1]*CI)
 
