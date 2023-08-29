@@ -10,17 +10,10 @@ def conv2d_nhwc(img, weight, S=(1,1), D= (1,1)):
 
   img : ndarray with nhwc shape 
 
+  weight: ndarray with KKIO shape
+
   """
-  # TODO 
-  # add checks for contiguous ndarray 
-  # it might be an issue if the array is not contiguous as we are directly picking values from the memory. (this assumes array is contiguous)
-  # again question arise that whether shoud we raise the issue or make the array contiguous ?
-  # -> on first thought we should raise the issue to the user. Let him handle the rough edges 
-  # -> in the error message add guide on how to make the array contigous. 
-  # also the array might be contiguous in fortran style; ahhhhhhhhhh
-  #  
   assert img.flags['C_CONTIGUOUS'], "array should be c contiguous array, "
-  
 
   try: 
     assert len(img.shape) == 4
