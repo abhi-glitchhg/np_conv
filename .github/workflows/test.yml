@@ -1,24 +1,28 @@
-name: Package tests with Conda environment
+name: Package tests 
 
 on: 
   pull_request:
   push:
 
-
 jobs:
-  setup_env:
-    name: Setup environment and run tests
-    runs-on: "ubuntu-latest"
+  build:
+
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         python-version: ['3.10', '3.11']
-    defaults:
-      run:
-        shell: bash -l {0}
+
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          pip install -r requirements.txt
-          python np_conv/test_conv2d.py
-          
+
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        
+        python np_conv/test_conv2d.py
