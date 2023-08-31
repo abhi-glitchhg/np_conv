@@ -28,26 +28,24 @@ def conv2d_nhwc(img, weight, S=(1,1), D= (1,1)):
 
   HO = (HI -1 -D[0]*(K[0]-1))//S[0] +1
   WO = (WI -1 -D[1]*(K[1]-1))//S[1] +1
+  
   temp = as_strided(img ,
            
           shape = (N, HO, WO, K[0], K[1], CI),
 
-           strides = (Ns, Hs*S[1], Ws+(S[0]-1)*img.itemsize*CI, Hs*D[0], Ws+CI*(D[1]-1)*img.itemsize, Cs ) 
+           strides = (Ns, Hs*S[0], Ws+(S[1]-1)*img.itemsize*CI, Hs*D[0], Ws+CI*(D[1]-1)*img.itemsize, Cs ) 
 
            ).reshape(-1, K[0]*K[1]*CI)
-
+  
   out = temp @ weight.reshape(-1, CO)
 
   return out.reshape(N, HO, WO, CO)
 
 
-
-def conv2d_nchw(img, weight, S, D):
+def conv2d_nchw(img, weight, S=(1,1), D=(1,1)):
   """
   img: nchw ndarray
-
   weight: oikk shaped ndarray 
-
   """
 
 
@@ -61,14 +59,19 @@ def conv2d_nchw(img, weight, S, D):
   WO = (WI -1 -D[1]*(K[1]-1))//S[1] +1
 
   temp = as_strided(img,
-                    
+
                     shape = (N, HO, WO, CI, K[0], K[1]),
 
-                    strides = (Ns, Hs*S[1], Ws+(S[0]-1)*img.itemsize*CI, Cs, Hs*D[0], Ws+(D[1]-1)*img.itemsize)
-                    ).reshape(-1, K[0]*K[1]*CI)
-    
-  #print(temp)
-  out= temp@ weight.reshape(CO,-1)
+                    strides = (Ns, Hs*S[0], Ws+(S[1]-1)*img.itemsize*CI, Cs, Hs*D[0], Ws+(D[1]-1)*img.itemsize)
+                    )
 
+
+  #print(temp.shape)
+  temp =temp.reshape(-1, K[0]*K[1]*CI)
+  #print(temp.shape)
+  #print(weight.shape)
+  weight = weight.reshape(CO, -1) 
+  #print(weight.shape)
+
+  out = weight @ temp.T
   return out.reshape(N,CO, HO,WO)
-
