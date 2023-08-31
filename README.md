@@ -2,6 +2,8 @@
 
 Implementations of convolutions in numpy without for loops.
 
+convs go brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+
 
 # TODO
 
