@@ -17,13 +17,8 @@ jobs:
       run:
         shell: bash -l {0}
     steps:
-      - uses: actions/checkout@v2
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: anaconda-client-env
-          environment-file: environment.yml
-          python-version: ${{ matrix.python-version }}
-          auto-activate-base: false
+      - uses: actions/checkout@v3
       - run: |
+          pip install -r requirements.txt
           python np_conv/test_conv2d.py
           
