@@ -1,6 +1,7 @@
 # check all the implementations by comparing them to mainstream libraries. 
 #Also need to do time profiling and memory connsumption against normal convolutions
 
+print("hello")
 import numpy as np
 import torch
 from conv2d import conv2d_nchw, conv2d_nhwc
