@@ -150,3 +150,7 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+
+# debuging specific file in np_conv
+np_conv/check_nps.py
