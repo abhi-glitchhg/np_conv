@@ -34,7 +34,7 @@ def test_pytorch():
                     for kernel2 in [3,7,14,22]:
                         for ic in [1,3,7]:
                             for oc in [4,7,1]:
-                                #print(f'{i} th iteration', end=" \t")
+                                print(f'{i} th iteration', height, width, kernel1, kernel2, ic, oc)
                                 
                                 Z1 = np.random.randn(5,height,width,ic)
                                 W1 = np.random.randn(kernel1,kernel2, ic, oc)
@@ -53,22 +53,27 @@ def test_pytorch():
                                 D=(1,1)
 
                                 assert_np( conv2d_nhwc(Z1,W1,S,D), pytorch_reference(Z_p_1,W_p_1,S,D).permute(0,2,3,1).contiguous().numpy())
-                                #assert_np( conv2d_nchw(Z2,W2,S,D), pytorch_reference(Z_p_2,W_p_2,S,D).contiguous().numpy() )
-                                #print(np.max(conv2d_nchw(Z2,W2,S,D)- pytorch_reference(Z_p_2,W_p_2,S,D).contiguous().numpy()))
-                                #diff =  conv2d_nchw(Z2,W2,S,D) - pytorch_reference(Z_p_2,W_p_2,S,D).contiguous().numpy()
-                                #np.save( f"{i}th_diff.npz",diff)
-                                #assert_np( conv2d_nchw(Z2,W2,S,D), pytorch_reference(Z_p_2,W_p_2,S,D).contiguous().numpy() )
+                                assert_np( conv2d_nchw(Z2,W2,S,D), pytorch_reference(Z_p_2,W_p_2,S,D).contiguous().numpy() )
                                 
                                 S =(1,1)
                                 D=(2,2)
                                 assert_np( conv2d_nhwc(Z1,W1,S,D),pytorch_reference(Z_p_1,W_p_1,S,D).permute(0,2,3,1).contiguous().numpy() )
-                                #assert_np( conv2d_nchw(Z2,W2,S,D), pytorch_reference(Z_p_2,W_p_2,S,D).contiguous().numpy() )
+                                assert_np( conv2d_nchw(Z2,W2,S,D), pytorch_reference(Z_p_2,W_p_2,S,D).contiguous().numpy() )
 
-                                S =(3,3)
-                                D=(2,2)
+                                S =(1,1)
+                                D=(3,3)
+
                                 assert_np( conv2d_nhwc(Z1,W1,S,D), pytorch_reference(Z_p_1,W_p_1,S,D).permute(0,2,3,1).contiguous().numpy()) 
                                 #assert_np( conv2d_nchw(Z2,W2,S,D), pytorch_reference(Z_p_2,W_p_2,S,D).contiguous().numpy() )
                                 
+
+                                S =(1,1)
+                                D=(5,5)
+                                
+                                assert_np( conv2d_nhwc(Z1,W1,S,D), pytorch_reference(Z_p_1,W_p_1,S,D).permute(0,2,3,1).contiguous().numpy()) 
+                                #assert_np( conv2d_nchw(Z2,W2,S,D), pytorch_reference(Z_p_2,W_p_2,S,D).contiguous().numpy() )
+                                
+
                                 S =(3,2)
                                 D=(2,1)
                                 assert_np( conv2d_nhwc(Z1,W1,S,D), pytorch_reference(Z_p_1,W_p_1,S,D).permute(0,2,3,1).contiguous().numpy()) 
