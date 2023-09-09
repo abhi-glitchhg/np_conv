@@ -61,10 +61,13 @@ def conv2d_nchw(img, weight, S=(1,1), D=(1,1)):
 
                     shape = (N, HO, WO, CI, K[0], K[1]),
 
-                    strides = (Ns, Hs*S[0], Ws*CI+(S[1]-1)*img.itemsize*CI, Cs, Hs*D[0], Ws+(D[1]-1)*img.itemsize)
-                    ).reshape(-1, K[0]*K[1]*CI)
 
+                    strides = (Ns, Hs*S[0], Ws + (S[1]-1)*img.itemsize, Cs, Hs*D[0], Ws+(D[1]-1)*img.itemsize)
+                    ).reshape(-1, K[0]*K[1]*CI)
+    
+    
   
   out = (temp @ weight.reshape(CO, -1).T).reshape(N,HO,WO,CO) # (N*HO*WO, C)
   
   return out.transpose((0,3,1,2))
+  
