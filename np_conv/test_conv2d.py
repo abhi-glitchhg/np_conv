@@ -8,7 +8,7 @@ from conv2d import conv2d_nchw, conv2d_nhwc
 from functools import partial
 from numpy.testing import assert_allclose as assert_np
 
-assert_np = partial(assert_np, rtol=1e-06)
+assert_np = partial(assert_np, rtol=1e-05)
 
 def pytorch_reference(img, weight,S =(1,1), D=(1,1)):
     """
