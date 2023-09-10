@@ -1,4 +1,4 @@
-name: Package tests 
+name: Conv2d  tests 
 
 on: 
   pull_request:
@@ -25,4 +25,4 @@ jobs:
       run: |
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
-        python np_conv/test_conv2d.py
+        python np_conv/test_conv3d.py
