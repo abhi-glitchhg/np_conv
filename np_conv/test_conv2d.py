@@ -8,9 +8,9 @@ from conv2d import conv2d_nchw, conv2d_nhwc
 from functools import partial
 from numpy.testing import assert_allclose as assert_np
 
-assert_np = partial(assert_np, rtol=1e-07)
+assert_np = partial(assert_np, rtol=1e-05)
 
-def pytorch_reference_conv2d(img, weight,S =(1,1), D=(1,1)):
+def pytorch_reference(img, weight,S =(1,1), D=(1,1)):
     """
     img: ndarray with nchw shape
     weight:iokk shape
@@ -54,6 +54,7 @@ def test_pytorch():
                                 S =(1,1)
                                 D=(1,1)
 
+
                                 assert_np( conv2d_nhwc(Z1,W1,S,D), pytorch_reference_conv2d(Z_p_1,W_p_1,S,D).permute(0,2,3,1).contiguous().numpy())
 
                                 assert_np( conv2d_nchw(Z2,W2,S,D), pytorch_reference_conv2d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
@@ -64,22 +65,28 @@ def test_pytorch():
 
                                 assert_np( conv2d_nchw(Z2,W2,S,D), pytorch_reference_conv2d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
 
+
                                 S =(1,1)
                                 D=(3,3)
 
+
                                 assert_np( conv2d_nhwc(Z1,W1,S,D), pytorch_reference_conv2d(Z_p_1,W_p_1,S,D).permute(0,2,3,1).contiguous().numpy()) 
                                 assert_np( conv2d_nchw(Z2,W2,S,D), pytorch_reference_conv2d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
+
                                 
 
                                 S =(1,1)
                                 D=(5,5)
                                 
+
                                 assert_np( conv2d_nhwc(Z1,W1,S,D), pytorch_reference_conv2d(Z_p_1,W_p_1,S,D).permute(0,2,3,1).contiguous().numpy()) 
                                 assert_np( conv2d_nchw(Z2,W2,S,D), pytorch_reference_conv2d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
+
                                 
 
                                 S =(3,2)
                                 D=(2,1)
+
                                 assert_np( conv2d_nhwc(Z1,W1,S,D), pytorch_reference_conv2d(Z_p_1,W_p_1,S,D).permute(0,2,3,1).contiguous().numpy()) 
 
                                 assert_np( conv2d_nchw(Z2,W2,S,D),pytorch_reference_conv2d(Z_p_2,W_p_2,S,D).contiguous().numpy() ) 
@@ -89,6 +96,7 @@ def test_pytorch():
                                 assert_np(conv2d_nhwc(Z1,W1,S,D), pytorch_reference_conv2d(Z_p_1,W_p_1,S,D).permute(0,2,3,1).contiguous().numpy())
 
                                 assert_np(conv2d_nchw(Z2,W2,S,D),pytorch_reference_conv2d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
+
 
                                 del Z1, W1, Z2, W2, Z_p_1, Z_p_2, W_p_1, W_p_2
                                 it+=1

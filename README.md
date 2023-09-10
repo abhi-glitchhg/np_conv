@@ -7,8 +7,8 @@ convs go brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 
 # TODO
 
-- [ ] Conv1D
-- [ ] Conv2D
+
+- [x] Conv2D
 - [ ] Conv3D
 
 The goal is to have more features like dilations, strides, and if possible groups. (For more info, checkout pytorch implementations of convolutions.) 
