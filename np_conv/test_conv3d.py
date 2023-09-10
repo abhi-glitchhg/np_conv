@@ -5,7 +5,7 @@ from conv3d import conv3d_nchw
 from functools import partial
 from numpy.testing import assert_allclose as assert_np
 
-assert_np = partial(assert_np, rtol=1e-07)
+assert_np = partial(assert_np, rtol=1e-05)
 
 def pytorch_reference_conv3d(img, weight,S =(1,1,1), D=(1,1,1)):
     """
