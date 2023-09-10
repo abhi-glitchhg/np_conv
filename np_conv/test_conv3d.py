@@ -28,9 +28,9 @@ def test_pytorch():
     import torch
 
     for i in range(1):
-        for height in [32,64,128,224,384]:
-            for width in [32,64,128,224,384]:
-                for depth in [32,64,128,224,384]:
+        for height in [32,64,127,224]:
+            for width in [32,64,127,224]:
+                for depth in [4,6,10,15]:
                     for kernel1 in [3,7,5,1]:
                         for kernel2 in [3,7,5,2]:
                             for kernel3 in [3,7,5,2]:
@@ -41,7 +41,7 @@ def test_pytorch():
                                         
                         
                                         Z2 = np.random.randn(5,ic,depth, height,width)
-                                        W2 = np.random.randn(oc,ic,kernel1,kernel2, kernel1)
+                                        W2 = np.random.randn(oc,ic,kernel1,kernel2, kernel3)
 
                                         Z_p_2 = torch.tensor(Z2)
                                         W_p_2 = torch.tensor(W2)
