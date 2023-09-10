@@ -1,4 +1,4 @@
-name: Conv2d  tests 
+name: Conv3d  tests 
 
 on: 
   pull_request:
