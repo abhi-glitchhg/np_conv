@@ -2,14 +2,25 @@
 
 Implementations of convolutions in numpy without for loops.
 
-convs go brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+# Why this project? 
 
 
-# TODO
+![image](https://github.com/abhi-glitchhg/np_conv/assets/72816663/6f60d5a3-cbdb-47a9-9bf3-e4f74e2741e9)
 
 
-- [x] Conv2D
-- [ ] Conv3D
+# Warning 
 
-The goal is to have more features like dilations, strides, and if possible groups. (For more info, checkout pytorch implementations of convolutions.) 
+Here, we are using `numpy.lib.stride_tricks.as_strided` [link](https://numpy.org/doc/stable/reference/generated/numpy.lib.stride_tricks.as_strided.html) function to get the desired views of the tensors. The documentation of the above function warns to use this function with care. 
+> Warning
+>This function has to be used with extreme care, see notes. 
 
+and 
+
+> For these reasons it is advisable to avoid `as_strided` when possible.
+
+Though, I have checked with different permutations and combinations, please first check the outputs yourself for your use case. 
+
+
+# Material I found useful while implementing this:
+
+[] CMU's Deep Learning Systems Course: [website](https://dlsyscourse.org/), [github](https://github.com/dlsyscourse/public_notebooks) 
