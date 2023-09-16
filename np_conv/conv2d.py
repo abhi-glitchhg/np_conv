@@ -47,6 +47,7 @@ def conv2d_nchw(img, weight, S=(1,1), D=(1,1)):
   img: nchw ndarray
   weight: oikk shaped ndarray 
   """
+  assert img.flags['C_CONTIGUOUS'], "array should be c contiguous array, "
 
   N,CI, HI, WI = img.shape
   Ns,Cs, Hs, Ws = img.strides

@@ -7,6 +7,8 @@ def conv3d_nchw(img, weight, S=(1,1,1), D=(1,1,1)):
   img: ncdhw ndarray
   weight: oikkk shaped ndarray 
   """
+  assert img.flags['C_CONTIGUOUS'], "array should be c contiguous array, "
+
 
   N,CI,DI, HI, WI = img.shape
   Ns,Cs,DS, Hs, Ws = img.strides
