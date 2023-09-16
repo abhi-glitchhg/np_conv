@@ -10,7 +10,7 @@ Implementations of convolutions in numpy without for loops.
 
 # Warning 
 
-Here, we are using `numpy.lib.stride_tricks.as_strided` [link](https://numpy.org/doc/stable/reference/generated/numpy.lib.stride_tricks.as_strided.html) function to get the desired views of the tensors. The documentation of the above function warns to use this function with care. 
+Here, we are using [ `numpy.lib.stride_tricks.as_strided` ](https://numpy.org/doc/stable/reference/generated/numpy.lib.stride_tricks.as_strided.html) function to get the desired views of the tensors. The documentation of the above function warns to use this function with care. 
 > Warning
 >This function has to be used with extreme care, see notes. 
 
@@ -23,4 +23,4 @@ Though, I have checked with different permutations and combinations, please firs
 
 # Material I found useful while implementing this:
 
-[] CMU's Deep Learning Systems Course: [website](https://dlsyscourse.org/), [github](https://github.com/dlsyscourse/public_notebooks) 
+1) CMU's Deep Learning Systems Course: [website](https://dlsyscourse.org/), [github](https://github.com/dlsyscourse/public_notebooks) 
