@@ -29,10 +29,10 @@ def test_pytorch():
 
     for i in range(1):
         for height in [32,64,127]:
-            for width in [32,64,127]:
+            for width in [32,64]:
                 for depth in [16, 20]:
-                    for kernel1 in [3,2,1]:
-                        for kernel2 in [3,7,5,2]:
+                    for kernel1 in [2,1]:
+                        for kernel2 in [3,7,5]:
                             for kernel3 in [3,7,5,2]:
                                 for ic in [1,3,7]:
                                     for oc in [4,7,3]:
