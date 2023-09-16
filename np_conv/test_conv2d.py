@@ -10,7 +10,7 @@ from numpy.testing import assert_allclose as assert_np
 
 assert_np = partial(assert_np, rtol=1e-05)
 
-def pytorch_reference(img, weight,S =(1,1), D=(1,1)):
+def pytorch_reference_conv2d(img, weight,S =(1,1), D=(1,1)):
     """
     img: ndarray with nchw shape
     weight:iokk shape
