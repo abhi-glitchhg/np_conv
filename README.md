@@ -1,6 +1,6 @@
 # np_conv
 
-Implementations of convolutions in numpy without for loops.
+Implementations of 2D and 3D convolutions in numpy without for loops.
 
 # Why this project? 
 
