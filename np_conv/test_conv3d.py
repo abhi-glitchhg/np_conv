@@ -1,7 +1,7 @@
 print("hello")
 import numpy as np
 import torch
-from conv3d import conv3d_nchw, conv3d_nhwc
+from conv3d import conv3d_ncdhw, conv3d_ndhwc
 from functools import partial
 from numpy.testing import assert_allclose as assert_np
 
@@ -55,47 +55,47 @@ def test_pytorch():
 
                                         S =(1,1,1)
                                         D=(1,1,1)
-                                        assert_np( conv3d_nhwc(Z1,W1,S,D), pytorch_reference_conv3d(Z_p_1,W_p_1,S,D).permute(0,2,3,4,1).contiguous().numpy())
+                                        assert_np( conv3d_ndhwc(Z1,W1,S,D), pytorch_reference_conv3d(Z_p_1,W_p_1,S,D).permute(0,2,3,4,1).contiguous().numpy())
 
-                                        assert_np( conv3d_nchw(Z2,W2,S,D), pytorch_reference_conv3d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
+                                        assert_np( conv3d_ncdhw(Z2,W2,S,D), pytorch_reference_conv3d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
                                         
                                         
                                         S =(1,1,2)
                                         D=(2,2,1)
                                         
-                                        #assert_np( conv3d_nhwc(Z1,W1,S,D), pytorch_reference_conv3d(Z_p_1,W_p_1,S,D).permute(0,2,3,4,1).contiguous().numpy())
+                                        assert_np( conv3d_ndhwc(Z1,W1,S,D), pytorch_reference_conv3d(Z_p_1,W_p_1,S,D).permute(0,2,3,4,1).contiguous().numpy())
 
-                                        assert_np( conv3d_nchw(Z2,W2,S,D), pytorch_reference_conv3d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
+                                        assert_np( conv3d_ncdhw(Z2,W2,S,D), pytorch_reference_conv3d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
 
                                         S =(1,1,4)
                                         D=(3,3,2)
 
-                                        #assert_np( conv3d_nhwc(Z1,W1,S,D), pytorch_reference_conv3d(Z_p_1,W_p_1,S,D).permute(0,2,3,4,1).contiguous().numpy())
+                                        assert_np( conv3d_ndhwc(Z1,W1,S,D), pytorch_reference_conv3d(Z_p_1,W_p_1,S,D).permute(0,2,3,4,1).contiguous().numpy())
 
-                                        assert_np( conv3d_nchw(Z2,W2,S,D), pytorch_reference_conv3d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
+                                        assert_np( conv3d_ncdhw(Z2,W2,S,D), pytorch_reference_conv3d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
                                         
 
                                         S =(1,1,2)
                                         D=(5,5,1)
 
-                                        #assert_np( conv3d_nhwc(Z1,W1,S,D), pytorch_reference_conv3d(Z_p_1,W_p_1,S,D).permute(0,2,3,4,1).contiguous().numpy())
+                                        assert_np( conv3d_ndhwc(Z1,W1,S,D), pytorch_reference_conv3d(Z_p_1,W_p_1,S,D).permute(0,2,3,4,1).contiguous().numpy())
                                         
-                                        assert_np( conv3d_nchw(Z2,W2,S,D), pytorch_reference_conv3d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
+                                        assert_np( conv3d_ncdhw(Z2,W2,S,D), pytorch_reference_conv3d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
                                         
 
                                         S =(3,2,3)
                                         D=(2,1,3)
                                         
 
-                                        #ssert_np( conv3d_nhwc(Z1,W1,S,D), pytorch_reference_conv3d(Z_p_1,W_p_1,S,D).permute(0,2,3,4,1).contiguous().numpy())
-                                        assert_np( conv3d_nchw(Z2,W2,S,D),pytorch_reference_conv3d(Z_p_2,W_p_2,S,D).contiguous().numpy() ) 
+                                        assert_np( conv3d_ndhwc(Z1,W1,S,D), pytorch_reference_conv3d(Z_p_1,W_p_1,S,D).permute(0,2,3,4,1).contiguous().numpy())
+                                        assert_np( conv3d_ncdhw(Z2,W2,S,D),pytorch_reference_conv3d(Z_p_2,W_p_2,S,D).contiguous().numpy() ) 
 
                                         S =(3,6,2)
                                         D=(2,1,5)
 
-                                        #assert_np( conv3d_nhwc(Z1,W1,S,D), pytorch_reference_conv3d(Z_p_1,W_p_1,S,D).permute(0,2,3,4,).contiguous().numpy())
+                                        assert_np( conv3d_ndhwc(Z1,W1,S,D), pytorch_reference_conv3d(Z_p_1,W_p_1,S,D).permute(0,2,3,4,1).contiguous().numpy())
                                         
-                                        assert_np(conv3d_nchw(Z2,W2,S,D),pytorch_reference_conv3d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
+                                        assert_np(conv3d_ncdhw(Z2,W2,S,D),pytorch_reference_conv3d(Z_p_2,W_p_2,S,D).contiguous().numpy() )
                                         it+=1
 
 

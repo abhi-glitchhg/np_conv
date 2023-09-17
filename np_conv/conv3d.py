@@ -2,13 +2,13 @@ from numpy.lib.stride_tricks import as_strided
 import numpy as np
 
 
-def conv3d_nchw(img, weight, S=(1,1,1), D=(1,1,1)):
+def conv3d_ncdhw(img, weight, stride=(1,1,1), dilation=(1,1,1)):
   """
   img: ncdhw ndarray
   weight: oikkk shaped ndarray 
   """
   assert img.flags['C_CONTIGUOUS'], "array should be c contiguous array, "
-
+  S, D = stride, dilation
 
   N,CI,DI, HI, WI = img.shape
   Ns,Cs,DS, Hs, Ws = img.strides
@@ -27,7 +27,7 @@ def conv3d_nchw(img, weight, S=(1,1,1), D=(1,1,1)):
   out = (temp @ weight.reshape(CO, -1).T).reshape(N,DO,HO,WO,CO) # (N*DO,HO*WO, C)
   return out.transpose((0,4,1,2,3))
 
-def conv3d_nhwc(img, weight, S=(1,1,1), D = (1,1,1)):
+def conv3d_ndhwc(img, weight, stride=(1,1,1), dilation = (1,1,1)):
   """
   img : ndarray with ndhwc shape 
   weight: ndarray with KKKIO shape
@@ -35,6 +35,7 @@ def conv3d_nhwc(img, weight, S=(1,1,1), D = (1,1,1)):
   D: Dilation
   """
   assert img.flags['C_CONTIGUOUS'], "array should be c contiguous array, "
+  S, D = stride, dilation
   N, DI, HI, WI, CI = img.shape
   Ns, Ds , Hs, Ws, Cs = img.strides
   K = weight.shape[0:3]

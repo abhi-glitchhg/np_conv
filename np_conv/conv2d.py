@@ -3,7 +3,7 @@ import numpy as np
 
 
 
-def conv2d_nhwc(img, weight, S=(1,1), D= (1,1)):
+def conv2d_nhwc(img, weight, stride=(1,1), dilation= (1,1)):
   """
   implementation of convolutions with Numpy. Hopefully optimized
 
@@ -20,7 +20,7 @@ def conv2d_nhwc(img, weight, S=(1,1), D= (1,1)):
   except:
     assert len(img.shape) == 3, "expected array is of improper dimensions, fix it :) "
     img = np.expand_dims(img, axis=0)
-
+  S, D = stride, dilation
   N, HI, WI, CI = img.shape
   Ns, Hs, Ws, Cs = img.strides
   K = weight.shape[0], weight.shape[1]
@@ -42,12 +42,13 @@ def conv2d_nhwc(img, weight, S=(1,1), D= (1,1)):
   return out.reshape(N, HO, WO, CO)
 
 
-def conv2d_nchw(img, weight, S=(1,1), D=(1,1)):
+def conv2d_nchw(img, weight, stride=(1,1), dilation=(1,1)):
   """
   img: nchw ndarray
   weight: oikk shaped ndarray 
   """
   assert img.flags['C_CONTIGUOUS'], "array should be c contiguous array, "
+  S, D = stride, dilation
 
   N,CI, HI, WI = img.shape
   Ns,Cs, Hs, Ws = img.strides
